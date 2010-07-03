@@ -4,7 +4,7 @@ Contributors: itx
 Donate link: http://itx.web.id/donate/
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: trunk
+Stable tag: 1.1.1
 
 Exclude plugins from appearing in plugins menu for normal user in WordPress multisite.
 
@@ -48,6 +48,9 @@ You can use the built in installer and upgrader, or you can install the plugin m
 For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugins/exclude-plugins/).
 
 == Changelog ==
+
+= 1.1.1, 03 July 2010 =
+* Bugfix: eliminating PHP warning "Warning: array_diff(): Argument #2 is not an array in .../wp-content/plugins/exclude-plugins/exclude-plugins.php on line 73"
 
 = 1.1 =
 * First Public Release

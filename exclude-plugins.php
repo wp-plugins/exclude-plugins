@@ -4,7 +4,7 @@ Plugin Name: Exclude Plugins
 Plugin URI: http://itx.web.id/wordpress/plugins/exclude-plugins/
 Description: Exclude plugins from appearing in plugins menu for normal user in WordPress multisite. This plugin is useful if you want to use plugins only for Super Admins while enabling some other plugins for normal user.
 Author: itx
-Version: 1.1
+Version: 1.1.1
 Author URI: http://itx.web.id
 Site Wide Only: true
 */
@@ -70,7 +70,7 @@ function exclude_plugins_menu() {
 
 function exclude_plugins_switch($from){
 	$all_plugins=exclude_plugins_no_network();
-	return array_diff(array_keys($all_plugins), $from);
+	return array_diff(array_keys($all_plugins), (array)$from);
 }
 
 function exclude_plugins_no_network(){
