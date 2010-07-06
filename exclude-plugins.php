@@ -234,7 +234,7 @@ function exclude_plugins_install () {
 		);";
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
-		$q="INSERT INTO ".$table_name." (option_name, option_value) VALUES ('version', '1.1'),('force_deactivate','0'),('exclude_new','1')";
+		$q="INSERT INTO ".$table_name." (option_name, option_value) VALUES ('version', '1.1.1'),('force_deactivate','0'),('exclude_new','1')";
 		$wpdb->query($wpdb->prepare($q));
 	}
 }
