@@ -196,13 +196,13 @@ function exclude_plugins_no_multisite() {
 function exclude_plugins_update_db($name,$value){
 	global $wpdb;
 	$value=maybe_serialize($value);
-	$q="INSERT INTO ".$wpdb->prefix."exclude_plugins (option_name, option_value) VALUES ( %s, %s ) ON DUPLICATE KEY UPDATE option_value= %s ";
+	$q="INSERT INTO ".$wpdb->base_prefix."exclude_plugins (option_name, option_value) VALUES ( %s, %s ) ON DUPLICATE KEY UPDATE option_value= %s ";
 	$wpdb->query($wpdb->prepare($q,$name,$value,$value));
 }
 
 function exclude_plugins_get_option($what){
 	global $wpdb;
-	$rows = $wpdb->get_row( "SELECT * FROM ".$wpdb->prefix."exclude_plugins where option_name='$what'" );
+	$rows = $wpdb->get_row( "SELECT * FROM ".$wpdb->base_prefix."exclude_plugins where option_name='$what'" );
 	if($wpdb->last_error){
 		if(is_super_admin())echo "<div class='updated fade'>Exclude Plugins is not functioning. You have error in database: $wpdb->last_error</div>";
 		return;
