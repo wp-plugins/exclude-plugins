@@ -4,7 +4,7 @@ Plugin Name: Exclude Plugins
 Plugin URI: http://itx.web.id/wordpress/plugins/exclude-plugins/
 Description: Exclude plugins from appearing in plugins menu for normal user in WordPress multisite. This plugin is useful if you want to use plugins only for Super Admins while enabling some other plugins for normal user.
 Author: itx
-Version: 1.1.1
+Version: 1.1.2
 Author URI: http://itx.web.id
 Site Wide Only: true
 */
@@ -196,13 +196,13 @@ function exclude_plugins_no_multisite() {
 function exclude_plugins_update_db($name,$value){
 	global $wpdb;
 	$value=maybe_serialize($value);
-	$q="INSERT INTO ".$wpdb->get_blog_prefix(0)."exclude_plugins (option_name, option_value) VALUES ( %s, %s ) ON DUPLICATE KEY UPDATE option_value= %s ";
+	$q="INSERT INTO ".$wpdb->prefix."exclude_plugins (option_name, option_value) VALUES ( %s, %s ) ON DUPLICATE KEY UPDATE option_value= %s ";
 	$wpdb->query($wpdb->prepare($q,$name,$value,$value));
 }
 
 function exclude_plugins_get_option($what){
 	global $wpdb;
-	$rows = $wpdb->get_row( "SELECT * FROM ".$wpdb->get_blog_prefix(0)."exclude_plugins where option_name='$what'" );
+	$rows = $wpdb->get_row( "SELECT * FROM ".$wpdb->prefix."exclude_plugins where option_name='$what'" );
 	if($wpdb->last_error){
 		if(is_super_admin())echo "<div class='updated fade'>Exclude Plugins is not functioning. You have error in database: $wpdb->last_error</div>";
 		return;
@@ -234,7 +234,7 @@ function exclude_plugins_install () {
 		);";
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
-		$q="INSERT INTO ".$table_name." (option_name, option_value) VALUES ('version', '1.1.1'),('force_deactivate','0'),('exclude_new','1')";
+		$q="INSERT INTO ".$table_name." (option_name, option_value) VALUES ('version', '1.1.2'),('force_deactivate','0'),('exclude_new','1')";
 		$wpdb->query($wpdb->prepare($q));
 	}
 }

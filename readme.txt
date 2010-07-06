@@ -4,7 +4,7 @@ Contributors: itx
 Donate link: http://itx.web.id/donate/
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 
 Exclude plugins from appearing in plugins menu for normal user in WordPress multisite.
 
@@ -22,6 +22,7 @@ will be available for normal user.
 
 If you're **not** using [network mode](http://codex.wordpress.org/Create_A_Network) in
 WordPress 3.0, you definitely *don't* need this plugin.
+Here's [how to activate the multisite option](http://itx.web.id/wordpress/mengaktifkan-opsi-multisite-dalam-wordpress-3-0/).
 
 For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugins/exclude-plugins/).
 
@@ -48,6 +49,9 @@ You can use the built in installer and upgrader, or you can install the plugin m
 For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugins/exclude-plugins/).
 
 == Changelog ==
+
+= 1.1.2, 06 July 2010 =
+* Bugfix: "Table ‘xxxxxx.wp_0_exclude_plugins’ doesn’t exist" error
 
 = 1.1.1, 03 July 2010 =
 * Bugfix: eliminating PHP warning "Warning: array_diff(): Argument #2 is not an array in .../wp-content/plugins/exclude-plugins/exclude-plugins.php on line 73"
