@@ -225,7 +225,7 @@ function exclude_plugins_colors() {
 
 function exclude_plugins_install () {
 	global $wpdb;
-	$table_name = $wpdb->prefix . "exclude_plugins";
+	$table_name = $wpdb->base_prefix . "exclude_plugins";
 	if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
 		$sql = "CREATE TABLE " . $table_name . " (
 		option_name VARCHAR(255) NOT NULL,
