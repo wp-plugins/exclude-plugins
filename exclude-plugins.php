@@ -6,9 +6,9 @@ Description: Exclude plugins from appearing in plugins menu for normal user in W
 Author: itx
 Version: 1.1.2
 Author URI: http://itx.web.id
-Site Wide Only: true
+Network: true
 
- Some lines inspired by Blue Network Plugins by r-a-y
+Some lines inspired by Blue Network Plugins by r-a-y
 */
 /*  Copyright 2010 itx (http://itx.web.id/)
 	This program is free software; you can redistribute it and/or modify
