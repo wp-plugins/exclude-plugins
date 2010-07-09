@@ -20,8 +20,7 @@ in plugins menu for normal user in WordPress multisite. This way, some plugins (
 plugins) will be available only for Super Admins, while other plugins (included plugins)
 will be available for normal user.
 
-If you're **not** using [network mode](http://codex.wordpress.org/Create_A_Network) in
-WordPress 3.0, you definitely *don't* need this plugin.
+If you're **not** using Network Mode/MultiSite in WordPress 3.0, you definitely **not** needing this plugin.
 Here's [how to activate the multisite option](http://itx.web.id/wordpress/mengaktifkan-opsi-multisite-dalam-wordpress-3-0/).
 
 For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugins/exclude-plugins/).
