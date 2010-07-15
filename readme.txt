@@ -23,7 +23,7 @@ will be available for normal user.
 If you're **not** using Network Mode/MultiSite in WordPress 3.0, you definitely **not** needing this plugin.
 Here's [how to activate the multisite option](http://itx.web.id/wordpress/mengaktifkan-opsi-multisite-dalam-wordpress-3-0/).
 
-For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugins/exclude-plugins/).
+For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugin/exclude-plugins/).
 
 == Installation ==
 
