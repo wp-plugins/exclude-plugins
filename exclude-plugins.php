@@ -4,7 +4,7 @@ Plugin Name: Exclude Plugins
 Plugin URI: http://itx.web.id/wordpress/plugins/exclude-plugins/
 Description: Exclude plugins from appearing in plugins menu for normal user in WordPress multisite. This plugin is useful if you want to use plugins only for Super Admins while enabling some other plugins for normal user.
 Author: itx
-Version: 1.1.2
+Version: 1.1.3
 Author URI: http://itx.web.id
 Network: true
 
@@ -56,7 +56,85 @@ function exclude_plugins_included($plugins){
 	return $included_plugins;
 }
 
-add_action('admin_menu', 'exclude_plugins_menu');
+if (function_exists('print_plugins_table')) {
+	add_action('admin_menu', 'exclude_plugins_menu');
+} else {
+	add_action('network_admin_menu', 'exclude_plugins_menu');
+
+	function print_plugins_table($plugins, $context = '') {
+		$checkbox = ! in_array( $context, array( 'mustuse', 'dropins' ) ) ? '<input type="checkbox" />' : '';
+?>
+<table class="widefat" cellspacing="0" id="<?php echo $context ?>-plugins-table">
+	<thead>
+	<tr>
+		<th scope="col" class="manage-column check-column"><?php echo $checkbox; ?></th>
+		<th scope="col" class="manage-column"><?php _e('Plugin'); ?></th>
+		<th scope="col" class="manage-column"><?php _e('Description'); ?></th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<th scope="col" class="manage-column check-column"><?php echo $checkbox; ?></th>
+		<th scope="col" class="manage-column"><?php _e('Plugin'); ?></th>
+		<th scope="col" class="manage-column"><?php _e('Description'); ?></th>
+	</tr>
+	</tfoot>
+
+	<tbody class="plugins">
+<?php
+
+		if ( empty($plugins) ) {
+			echo '<tr>
+				<td colspan="3">' . __('No plugins to show') . '</td>
+			</tr>';
+		}
+		foreach ( (array)$plugins as $plugin_file => $plugin_data) {
+
+			$checkbox = "<input type='checkbox' name='checked[]' value='" . esc_attr($plugin_file) . "' />";
+			$description = '<p>' . $plugin_data['Description'] . '</p>';
+			$plugin_name = $plugin_data['Name'];
+
+			echo "
+	<tr class='$class'>
+		<th scope='row' class='check-column'>$checkbox</th>
+		<td class='plugin-title'><strong>$plugin_name</strong></td>
+		<td class='desc'>$description</td>
+	</tr>
+	<tr class='$class second'>
+		<td></td>
+		<td class='plugin-title'>";
+			echo '<div class="row-actions-visible">';
+			foreach ( $actions as $action => $link ) {
+				$sep = end($actions) == $link ? '' : ' | ';
+				echo "<span class='$action'>$link$sep</span>";
+			}
+			echo "</div></td>
+		<td class='desc'>";
+			$plugin_meta = array();
+			if ( !empty($plugin_data['Version']) )
+				$plugin_meta[] = sprintf(__('Version %s'), $plugin_data['Version']);
+			if ( !empty($plugin_data['Author']) ) {
+				$author = $plugin_data['Author'];
+				if ( !empty($plugin_data['AuthorURI']) )
+					$author = '<a href="' . $plugin_data['AuthorURI'] . '" title="' . __( 'Visit author homepage' ) . '">' . $plugin_data['Author'] . '</a>';
+				$plugin_meta[] = sprintf( __('By %s'), $author );
+			}
+			if ( ! empty($plugin_data['PluginURI']) )
+				$plugin_meta[] = '<a href="' . $plugin_data['PluginURI'] . '" title="' . __( 'Visit plugin site' ) . '">' . __('Visit plugin site') . '</a>';
+
+			$plugin_meta = apply_filters('plugin_row_meta', $plugin_meta, $plugin_file, $plugin_data, $context);
+			echo implode(' | ', $plugin_meta);
+			echo "</td>
+	</tr>\n";
+		}
+?>
+	</tbody>
+</table>
+<?php
+	} //End print_plugins_table()
+}
+
 function exclude_plugins_menu() {
 	if (is_multisite()){
 		if (is_super_admin()){
@@ -236,7 +314,7 @@ function exclude_plugins_install () {
 		);";
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
-		$q="INSERT INTO ".$table_name." (option_name, option_value) VALUES ('version', '1.1.2'),('force_deactivate','0'),('exclude_new','1')";
+		$q="INSERT INTO ".$table_name." (option_name, option_value) VALUES ('version', '1.1.3'),('force_deactivate','0'),('exclude_new','1')";
 		$wpdb->query($wpdb->prepare($q));
 	}
 }

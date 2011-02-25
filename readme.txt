@@ -3,8 +3,8 @@ Tags: plugins, multisite, 3.0, wpmu, network, super admin, admin
 Contributors: itx
 Donate link: http://itx.web.id/donate/
 Requires at least: 3.0
-Tested up to: 3.0
-Stable tag: 1.1.2
+Tested up to: 3.1
+Stable tag: 1.1.3
 
 Exclude plugins from appearing in plugins menu for normal user in WordPress multisite.
 
@@ -48,6 +48,8 @@ You can use the built in installer and upgrader, or you can install the plugin m
 For questions and bug report, please visit [Exclude Plugins page](http://itx.web.id/wordpress/plugins/exclude-plugins/).
 
 == Changelog ==
+= 1.1.3, 25 February 2011 =
+* Supports WordPress 3.1
 
 = 1.1.2, 06 July 2010 =
 * Bugfix: "Table ‘xxxxxx.wp_0_exclude_plugins’ doesn’t exist" error
